@@ -51,6 +51,7 @@ export interface Location {
     bestSwell: string;
   };
   whatsapp?: string;
+  website?: string;
 }
 
 export const HOUSE_COORDS = { lat: 11.247603, lng: -85.873353 };
@@ -563,6 +564,7 @@ export const locations: Location[] = [
     icon: Coffee,
     rating: 4.6,
     priceRange: '$$',
+    website: "https://www.dalepues.com",
     images: [
       "https://loremflickr.com/800/600/burger,fries",
       "https://loremflickr.com/800/600/coffee,shop",
@@ -618,6 +620,7 @@ export const locations: Location[] = [
     icon: Utensils,
     rating: 4.7,
     priceRange: '$$',
+    website: "https://www.dingrepaircafe.com",
     images: [
       "https://loremflickr.com/800/600/smoothie,bowl",
       "https://loremflickr.com/800/600/skate,bowl",
@@ -672,6 +675,7 @@ export const locations: Location[] = [
     icon: Fish,
     rating: 4.4,
     priceRange: '$$$',
+    website: "https://www.eltimonsjds.com",
     images: [
       "https://loremflickr.com/800/600/lobster,dinner",
       "https://loremflickr.com/800/600/beachfront,restaurant",
