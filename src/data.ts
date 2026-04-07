@@ -53,7 +53,7 @@ export interface Location {
   whatsapp?: string;
 }
 
-export const HOUSE_COORDS = { lat: 11.247090, lng: -85.873580 };
+export const HOUSE_COORDS = { lat: 11.247603, lng: -85.873353 };
 
 export const locations: Location[] = [
   // NORTHERN BEACHES
