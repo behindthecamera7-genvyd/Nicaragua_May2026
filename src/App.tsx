@@ -698,6 +698,26 @@ export default function App() {
                           </a>
                         </div>
                       )}
+
+                      <div className="pt-8 border-t border-zinc-800 mt-8">
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-4">Navigation</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <a 
+                            href={`https://www.google.com/maps/dir/?api=1&destination=${activeLocation.coordinates.lat},${activeLocation.coordinates.lng}`}
+                            target="_blank"
+                            className="py-4 bg-zinc-800 hover:bg-zinc-700 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest flex items-center justify-center gap-2 transition-colors"
+                          >
+                            <Navigation size={14} /> From Current Location
+                          </a>
+                          <a 
+                            href={`https://www.google.com/maps/dir/?api=1&origin=${HOUSE_COORDS.lat},${HOUSE_COORDS.lng}&destination=${activeLocation.coordinates.lat},${activeLocation.coordinates.lng}`}
+                            target="_blank"
+                            className="py-4 bg-zinc-800 hover:bg-zinc-700 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest flex items-center justify-center gap-2 transition-colors"
+                          >
+                            <MapPin size={14} /> From Mi Casa
+                          </a>
+                        </div>
+                      </div>
                     </section>
 
                     <section className="p-8 bg-orange-600 rounded-[2.5rem] text-white shadow-2xl shadow-orange-900/20">
