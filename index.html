@@ -1,0 +1,298 @@
+import React, { useState } from 'react';
+import { 
+  MapPin, 
+  Info, 
+  Waves, 
+  TreePine, 
+  Utensils, 
+  Navigation, 
+  Shield, 
+  Compass, 
+  ExternalLink, 
+  Map as MapIcon, 
+  Star,
+  Camera,
+  ChevronRight
+} from 'lucide-react';
+
+const App = () => {
+  const [selectedId, setSelectedId] = useState(1);
+  const [filter, setFilter] = useState('all');
+
+  const locations = [
+    {
+      id: 1,
+      name: "Playa Hermosa",
+      category: "beaches",
+      query: "Playa+Hermosa+San+Juan+del+Sur+Nicaragua",
+      tags: ["Survivor Site", "Pristine"],
+      description: "A sprawling beach accessed through a private ranch. Known for its wide shore and consistent beginner-to-intermediate surf. It's much cleaner than the town beach due to the managed entry.",
+      intel: "Entrance fee is $3. Facilities include a full restaurant, showers, and hammocks. Famous as a repeat filming location for the 'Survivor' TV show.",
+      tips: [
+        "Entrance fee: $3 per person",
+        "Excellent facilities: Showers, restaurant, and lockers",
+        "Survivor: Filmed here 3+ times"
+      ]
+    },
+    {
+      id: 2,
+      name: "Playa Yankee",
+      category: "beaches",
+      query: "Playa+Yankee+Nicaragua",
+      tags: ["Pro Surf", "Rugged"],
+      description: "A wild, south-facing beach with a powerful wedge break. This is a local favorite for serious surfers looking to escape the crowds of Playa Maderas.",
+      intel: "4WD is mandatory for the final descent. No facilities here—bring your own water and food. The volcanic sand and cliffs make for epic sunset views.",
+      tips: [
+        "4WD Mandatory: The final hill is very steep and rutted",
+        "No facilities: Pack all your water and food",
+        "Surfing: Best at mid-to-high tide"
+      ]
+    },
+    {
+      id: 3,
+      name: "La Flor Wildlife Reserve",
+      category: "activities",
+      query: "Refugio+de+Vida+Silvestre+La+Flor+Nicaragua",
+      tags: ["Nature", "Turtles"],
+      description: "One of the most important nesting sites for Olive Ridley sea turtles in Central America. During an 'Arribada', thousands of turtles arrive at once.",
+      intel: "Peak nesting is July to January. Night tours are required. Use red-light filters only. It is about a 45-minute drive south from San Juan del Sur.",
+      tips: [
+        "Season: July to January (Peak is Oct-Nov)",
+        "Night visits: Only possible with authorized guides",
+        "Lights: Strictly no white light flashlights or flash"
+      ]
+    },
+    {
+      id: 4,
+      name: "Tree Casa Resort",
+      category: "activities",
+      query: "Tree+Casa+Resort+San+Juan+del+Sur",
+      tags: ["Jungle Pools", "Design"],
+      description: "A luxury eco-resort built into the jungle canopy north of town. Features multi-tiered pools, organic architecture, and a slide into a natural pond.",
+      intel: "Great for a day pass ($20-$30) to escape the salt and heat. Sunday afternoons often feature live music and a farmers-market vibe.",
+      tips: [
+        "Day Pass: Usually available for around $20-30",
+        "Family Friendly: Great slide and kids area",
+        "Sundays: Best for live music and socializing"
+      ]
+    },
+    {
+      id: 5,
+      name: "Playa Escamequita",
+      category: "beaches",
+      query: "Playa+Escamequita+Nicaragua",
+      tags: ["Horseback", "River Mouth"],
+      description: "A peaceful cove where the river meets the sea. Primarily known for the world-class horseback riding tours that transit through the dry forest canyon.",
+      intel: "The best experience is a sunset ride with Big Sky Ranch. The beach itself is extremely quiet and perfect for a long, isolated walk.",
+      tips: [
+        "Horseback Riding: Big Sky Ranch is the top operator",
+        "Estuary: Beautiful birdwatching at the river mouth",
+        "Vibe: Very quiet and rarely crowded"
+      ]
+    },
+    {
+      id: 6,
+      name: "Morgan's Rock",
+      category: "dining",
+      query: "Morgan's+Rock+Eco-Lodge+Nicaragua",
+      tags: ["Luxury", "Farm-to-Table"],
+      description: "A premier eco-lodge with a high-end restaurant overlooking a private bay. They source most of their ingredients from their own organic farm.",
+      intel: "Reservations are required for non-guests. The dining deck is suspended above the jungle floor with incredible sunset views over a private beach.",
+      tips: [
+        "Reservation: Required 24h in advance",
+        "Farm-to-table: 70% of food is grown on site",
+        "Views: The suspension bridge is iconic"
+      ]
+    }
+  ];
+
+  const filteredLocations = filter === 'all' ? locations : locations.filter(l => l.category === filter);
+  const activeLocation = locations.find(l => l.id === selectedId);
+
+  return (
+    <div className="flex flex-col h-screen bg-zinc-950 text-zinc-100 overflow-hidden font-sans">
+      {/* Header */}
+      <header className="p-4 md:p-6 bg-zinc-900 border-b border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-orange-600 rounded-lg shadow-lg shadow-orange-900/20">
+            <Compass className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-xl font-black tracking-tight uppercase italic">SJDS Live Explorer</h1>
+            <p className="text-[10px] text-zinc-500 font-bold tracking-widest uppercase">Research-Backed Real-Time Guide</p>
+          </div>
+        </div>
+
+        <nav className="flex gap-2">
+          {['all', 'beaches', 'activities', 'dining'].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
+                filter === cat ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </nav>
+      </header>
+
+      {/* Main Layout */}
+      <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
+        
+        {/* Sidebar: Location List */}
+        <div className="w-full lg:w-96 border-r border-zinc-800 bg-zinc-950 flex flex-col shadow-2xl">
+          <div className="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/50">
+            <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Select Destination</span>
+            <span className="text-[10px] bg-zinc-800 px-2 py-1 rounded text-zinc-400">{filteredLocations.length} results</span>
+          </div>
+          <div className="flex-1 overflow-y-auto no-scrollbar p-2 space-y-2">
+            {filteredLocations.map((loc) => (
+              <button
+                key={loc.id}
+                onClick={() => setSelectedId(loc.id)}
+                className={`w-full text-left p-4 rounded-2xl transition-all border flex flex-col gap-2 ${
+                  selectedId === loc.id 
+                  ? 'bg-zinc-100 text-zinc-950 border-white shadow-xl shadow-white/5' 
+                  : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-600'
+                }`}
+              >
+                <div className="flex justify-between items-start">
+                  <span className="font-black uppercase italic tracking-tight text-lg leading-none">{loc.name}</span>
+                  {loc.category === 'beaches' && <Waves className="w-4 h-4" />}
+                  {loc.category === 'activities' && <TreePine className="w-4 h-4" />}
+                  {loc.category === 'dining' && <Utensils className="w-4 h-4" />}
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {loc.tags.map(tag => (
+                    <span key={tag} className={`text-[8px] font-bold px-2 py-0.5 rounded uppercase ${selectedId === loc.id ? 'bg-zinc-950 text-white' : 'bg-zinc-800 text-zinc-500'}`}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Detail Content: The "Real" View */}
+        <div className="flex-1 flex flex-col bg-zinc-900 overflow-y-auto">
+          {activeLocation ? (
+            <>
+              {/* Map/Image Integration */}
+              <div className="relative h-96 lg:h-[500px] w-full bg-black group shrink-0">
+                <iframe
+                  title="Live Google Map"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  style={{ border: 0 }}
+                  src={`https://www.google.com/maps?q=${activeLocation.query}&output=embed&t=k`}
+                  allowFullScreen
+                ></iframe>
+                <div className="absolute top-4 right-4 bg-zinc-950/80 backdrop-blur p-4 rounded-2xl border border-white/10 max-w-xs hidden md:block">
+                  <div className="flex items-center gap-2 mb-2 text-orange-500">
+                    <Camera className="w-4 h-4" />
+                    <span className="text-[10px] font-black uppercase">Live Explorer View</span>
+                  </div>
+                  <p className="text-[11px] text-zinc-300 leading-relaxed italic">
+                    The map above is live. Zoom in to see real user photos, terrain, and road conditions in real-time.
+                  </p>
+                </div>
+                <div className="absolute bottom-4 left-4 flex gap-2">
+                   <a 
+                    href={`https://www.google.com/maps/search/${activeLocation.query}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-white text-black px-4 py-2 rounded-full text-xs font-black uppercase flex items-center gap-2 hover:scale-105 transition-transform"
+                   >
+                     Open Real Photos <ExternalLink className="w-3 h-3" />
+                   </a>
+                </div>
+              </div>
+
+              {/* Info Section */}
+              <div className="p-6 md:p-12">
+                <div className="max-w-4xl mx-auto">
+                  <div className="flex items-center gap-4 mb-6">
+                    <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter leading-none">{activeLocation.name}</h2>
+                    <div className="px-4 py-1 bg-orange-600 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">{activeLocation.category}</div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div className="md:col-span-2 space-y-6">
+                      <p className="text-xl text-zinc-400 font-medium leading-relaxed italic">
+                        {activeLocation.description}
+                      </p>
+                      <div className="p-6 bg-zinc-800 rounded-[2rem] border border-white/5">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Star className="w-5 h-5 text-orange-500" />
+                          <h4 className="text-sm font-black uppercase tracking-widest text-zinc-200">The Insider Intel</h4>
+                        </div>
+                        <p className="text-zinc-400 text-sm leading-relaxed">{activeLocation.intel}</p>
+                      </div>
+
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-black uppercase tracking-widest text-zinc-500 ml-2">Quick Tips</h4>
+                        {activeLocation.tips.map((tip, index) => (
+                          <div key={index} className="flex items-center gap-4 p-4 bg-zinc-950/50 rounded-2xl border border-zinc-800">
+                             <ChevronRight className="w-4 h-4 text-orange-600 shrink-0" />
+                             <span className="text-sm text-zinc-300 font-medium">{tip}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="p-6 bg-zinc-100 text-zinc-950 rounded-[2rem]">
+                        <h4 className="text-[10px] font-black uppercase tracking-widest mb-4 opacity-50 text-center border-b border-black/10 pb-4">Road Survival</h4>
+                        <div className="space-y-4">
+                          <div className="flex items-start gap-3">
+                            <Shield className="w-5 h-5 mt-1 shrink-0" />
+                            <div>
+                              <p className="text-xs font-black uppercase">4x4 Necessary</p>
+                              <p className="text-[10px] opacity-70 font-medium">Rain makes these dirt roads slick as ice.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <Navigation className="w-5 h-5 mt-1 shrink-0" />
+                            <div>
+                              <p className="text-xs font-black uppercase">Offline Maps</p>
+                              <p className="text-[10px] opacity-70 font-medium">Download the region in your app now.</p>
+                            </div>
+                          </div>
+                          <div className="pt-4 border-t border-black/10">
+                            <div className="flex items-center gap-2">
+                               <MapIcon className="w-4 h-4" />
+                               <span className="text-[10px] font-bold uppercase tracking-tighter">Waze is Recommended</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="flex-1 flex items-center justify-center text-zinc-500 italic">
+              Select a location to explore live imagery and data.
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Footer / Credits */}
+      <footer className="p-4 bg-zinc-950 border-t border-zinc-800 flex justify-between items-center px-8 shrink-0">
+        <span className="text-[8px] font-black uppercase tracking-[0.5em] text-zinc-600">SJDS Local Explorer v5.1</span>
+        <div className="flex gap-4">
+          <span className="text-[8px] font-bold text-zinc-700">PURA VIDA</span>
+          <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Nicaragua 2026</span>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
