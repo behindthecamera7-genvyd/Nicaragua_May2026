@@ -23,7 +23,8 @@ import {
   Camera,
   Navigation,
   Clock,
-  ChevronDown
+  ChevronDown,
+  Activity
 } from 'lucide-react';
 import { locations, Location, HOUSE_COORDS } from './data';
 
@@ -85,6 +86,7 @@ export default function App() {
     { id: 'dining', label: 'Dining', icon: Utensils },
     { id: 'adventures', label: 'Adventures', icon: Mountain },
     { id: 'adventures-regional', label: 'Regional', icon: MapPin },
+    { id: 'car-rentals', label: 'Car Rentals', icon: Truck },
     { id: 'logistics', label: 'Logistics', icon: Truck },
   ];
 
@@ -216,6 +218,12 @@ export default function App() {
                         <div className="flex items-center gap-1 mt-1 text-[8px] font-bold text-orange-600 uppercase tracking-wider">
                           <Navigation size={8} />
                           {calculateDistance(HOUSE_COORDS.lat, HOUSE_COORDS.lng, loc.coordinates.lat, loc.coordinates.lng).toFixed(1)} km
+                        </div>
+                      )}
+                      {loc.hours && (
+                        <div className="flex items-center gap-1 mt-1 text-[8px] font-bold text-zinc-500 uppercase tracking-wider">
+                          <Clock size={8} />
+                          {loc.hours.open} - {loc.hours.close}
                         </div>
                       )}
                     </div>
@@ -494,7 +502,70 @@ export default function App() {
                   </div>
 
                   <div className="lg:w-80 space-y-8 shrink-0">
+                    {/* Surf & Tide Widget */}
+                    {activeLocation.surfData && (
+                      <section className="p-8 bg-zinc-900 border border-zinc-800 rounded-[2.5rem] shadow-xl overflow-hidden relative group">
+                        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform">
+                          <Waves size={80} />
+                        </div>
+                        <div className="relative z-10">
+                          <div className="flex items-center justify-between mb-6">
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 bg-blue-500/10 rounded-lg text-blue-500">
+                                <Waves size={16} />
+                              </div>
+                              <h4 className="text-xs font-black uppercase tracking-widest text-blue-500">Surf & Tides</h4>
+                            </div>
+                            <span className="flex items-center gap-1 px-2 py-0.5 bg-green-500/10 text-green-500 text-[8px] font-black uppercase rounded-full animate-pulse">
+                              <Activity size={8} /> Live
+                            </span>
+                          </div>
+
+                          <div className="space-y-4">
+                            <div className="flex justify-between items-center">
+                              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Conditions</span>
+                              <span className="text-xs font-black text-white">3-4ft • Clean</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Difficulty</span>
+                              <span className="text-xs font-black text-white">{activeLocation.surfData.difficulty}</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Best Tide</span>
+                              <span className="text-xs font-black text-white">{activeLocation.surfData.bestTide}</span>
+                            </div>
+                            
+                            <div className="pt-4 border-t border-zinc-800">
+                              <div className="flex justify-between items-end mb-2">
+                                <div className="flex flex-col">
+                                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Next Tide</span>
+                                  <span className="text-xs font-black text-white">High @ 2:45 PM</span>
+                                </div>
+                                <div className="h-8 w-24 flex items-end gap-0.5">
+                                  {[0.2, 0.4, 0.7, 0.9, 1.0, 0.8, 0.5, 0.3].map((h, i) => (
+                                    <div key={i} className="flex-1 bg-blue-500/20 rounded-t-sm" style={{ height: `${h * 100}%` }} />
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    )}
+
                     <section className="p-8 bg-zinc-900 border border-zinc-800 rounded-[2.5rem] shadow-xl">
+                      {activeLocation.hours && (
+                        <div className="mb-8 p-4 bg-zinc-800/30 rounded-2xl border border-white/5">
+                          <div className="flex items-center gap-3 mb-3">
+                            <Clock size={14} className="text-orange-500" />
+                            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Operating Hours</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-xs font-bold text-white">{activeLocation.hours.days}</span>
+                            <span className="text-xs font-black text-orange-500">{activeLocation.hours.open} - {activeLocation.hours.close}</span>
+                          </div>
+                        </div>
+                      )}
                       {activeLocation.menu && (
                         <div className="mb-8">
                           <button 
