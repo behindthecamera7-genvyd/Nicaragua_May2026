@@ -50,6 +50,7 @@ export interface Location {
     bestTide: 'Low' | 'Mid' | 'High' | 'All Tides';
     bestSwell: string;
   };
+  whatsapp?: string;
 }
 
 export const HOUSE_COORDS = { lat: 11.247090, lng: -85.873580 };
@@ -82,6 +83,7 @@ export const locations: Location[] = [
       bestTide: "Mid",
       bestSwell: "S-SW"
     },
+    whatsapp: "+50588888888",
     menu: {
       sections: [
         {
@@ -574,6 +576,7 @@ export const locations: Location[] = [
       close: "9:00 PM",
       days: "Daily"
     },
+    whatsapp: "+50577777777",
     menu: {
       sections: [
         {
@@ -682,6 +685,7 @@ export const locations: Location[] = [
       close: "10:00 PM",
       days: "Daily"
     },
+    whatsapp: "+50566666666",
     menu: {
       sections: [
         {
@@ -1528,7 +1532,8 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/4x4,rental"
     ],
     coordinates: { lat: 11.2545, lng: -85.8705 },
-    hours: { open: "8:00 AM", close: "5:00 PM", days: "Mon-Sat" }
+    hours: { open: "8:00 AM", close: "5:00 PM", days: "Mon-Sat" },
+    whatsapp: "+50555555555"
   },
   {
     id: 53,
@@ -1548,7 +1553,8 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/adventure,vehicle"
     ],
     coordinates: { lat: 11.2535, lng: -85.8715 },
-    hours: { open: "8:30 AM", close: "5:30 PM", days: "Daily" }
+    hours: { open: "8:30 AM", close: "5:30 PM", days: "Daily" },
+    whatsapp: "+50544444444"
   },
   {
     id: 54,
