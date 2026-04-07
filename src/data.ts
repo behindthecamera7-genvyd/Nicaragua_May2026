@@ -68,19 +68,21 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Tacos & Snacks",
+          title: "Taco Stop & Snacks",
           items: [
-            { name: "Fish Tacos", price: "$8", description: "Fresh catch with spicy slaw" },
+            { name: "Fish Tacos", price: "$8", description: "Fresh catch with spicy slaw and lime" },
             { name: "Shrimp Ceviche", price: "$10", description: "Lime-marinated with plantain chips" },
-            { name: "Guacamole", price: "$6", description: "Homemade with fresh chips" }
+            { name: "Guacamole & Chips", price: "$6", description: "Homemade with fresh avocados" },
+            { name: "Chicken Quesadilla", price: "$7", description: "Melted cheese and grilled chicken" }
           ]
         },
         {
-          title: "Drinks",
+          title: "Beach Drinks",
           items: [
             { name: "Toña Beer", price: "$2.50" },
-            { name: "Fresh Coconut", price: "$3" },
-            { name: "Passion Fruit Smoothie", price: "$4" }
+            { name: "Fresh Coconut", price: "$3", description: "Chilled and opened to order" },
+            { name: "Passion Fruit Smoothie", price: "$4" },
+            { name: "Rum & Coke", price: "$5" }
           ]
         }
       ]
@@ -132,10 +134,18 @@ export const locations: Location[] = [
         {
           title: "Matilda's Bar",
           items: [
-            { name: "Classic Burger", price: "$7" },
-            { name: "Fried Fish", price: "$9" },
-            { name: "Tostones", price: "$4" },
-            { name: "Cold Toña", price: "$2" }
+            { name: "Classic Burger", price: "$7", description: "Grilled beef with all the fixings" },
+            { name: "Fried Fish", price: "$9", description: "Whole fish with rice and beans" },
+            { name: "Tostones with Cheese", price: "$4", description: "Double-fried plantains" },
+            { name: "Chicken Wings", price: "$6", description: "Spicy or BBQ" }
+          ]
+        },
+        {
+          title: "Cold Drinks",
+          items: [
+            { name: "Cold Toña", price: "$2" },
+            { name: "Victoria Frost", price: "$2" },
+            { name: "Natural Juice", price: "$2.50" }
           ]
         }
       ]
@@ -166,9 +176,17 @@ export const locations: Location[] = [
         {
           title: "Beachside Eats",
           items: [
-            { name: "Chicken Quesadilla", price: "$7" },
-            { name: "Fruit Platter", price: "$6" },
-            { name: "Iced Coffee", price: "$3.50" }
+            { name: "Chicken Quesadilla", price: "$7", description: "Flour tortilla with melted cheese" },
+            { name: "Fruit Platter", price: "$6", description: "Fresh seasonal tropical fruits" },
+            { name: "Ham & Cheese Sandwich", price: "$5" }
+          ]
+        },
+        {
+          title: "Refreshments",
+          items: [
+            { name: "Iced Coffee", price: "$3.50" },
+            { name: "Fresh Lemonade", price: "$2.50" },
+            { name: "Smoothie", price: "$4" }
           ]
         }
       ]
@@ -223,8 +241,16 @@ export const locations: Location[] = [
           title: "Beachfront Favorites",
           items: [
             { name: "Nica Breakfast", price: "$5", description: "Gallo pinto, eggs, cheese, plantains" },
-            { name: "Fish of the Day", price: "$12" },
-            { name: "Rum Punch", price: "$4" }
+            { name: "Fish of the Day", price: "$12", description: "Grilled with garlic butter and rice" },
+            { name: "Shrimp Cocktail", price: "$9", description: "Fresh shrimp in tangy sauce" }
+          ]
+        },
+        {
+          title: "Sunset Drinks",
+          items: [
+            { name: "Rum Punch", price: "$4" },
+            { name: "Classic Margarita", price: "$5" },
+            { name: "Toña Beer", price: "$2.50" }
           ]
         }
       ]
@@ -278,10 +304,17 @@ export const locations: Location[] = [
         {
           title: "Remanso Beach Bar",
           items: [
-            { name: "Surf Burger", price: "$8" },
-            { name: "Fish Tacos (3)", price: "$9" },
-            { name: "Nachos", price: "$7" },
-            { name: "Smoothie", price: "$4" }
+            { name: "Surf Burger", price: "$8", description: "Beef patty, cheese, and grilled onions" },
+            { name: "Fish Tacos (3)", price: "$9", description: "Battered fish with cabbage slaw" },
+            { name: "Nachos Supreme", price: "$7", description: "Cheese, beans, and jalapeños" }
+          ]
+        },
+        {
+          title: "Drinks",
+          items: [
+            { name: "Fruit Smoothie", price: "$4" },
+            { name: "Cold Toña", price: "$2.50" },
+            { name: "Iced Tea", price: "$2" }
           ]
         }
       ]
@@ -312,10 +345,18 @@ export const locations: Location[] = [
         {
           title: "Hermosa Restaurant",
           items: [
-            { name: "Grilled Lobster", price: "$25" },
-            { name: "Ceviche Mixto", price: "$12" },
-            { name: "Chicken Skewers", price: "$10" },
-            { name: "Margarita", price: "$6" }
+            { name: "Grilled Lobster", price: "$25", description: "Freshly caught, served with garlic butter" },
+            { name: "Ceviche Mixto", price: "$12", description: "Shrimp and fish in citrus marinade" },
+            { name: "Chicken Skewers", price: "$10", description: "Grilled with peppers and onions" },
+            { name: "Fish Burger", price: "$9", description: "Grilled fillet with tartar sauce" }
+          ]
+        },
+        {
+          title: "Beach Cocktails",
+          items: [
+            { name: "Margarita", price: "$6" },
+            { name: "Piña Colada", price: "$7" },
+            { name: "Fresh Coconut", price: "$3" }
           ]
         }
       ]
@@ -382,7 +423,19 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/beach,conservation",
       "https://loremflickr.com/800/600/ocean,nature"
     ],
-    coordinates: { lat: 11.1450, lng: -85.8250 }
+    coordinates: { lat: 11.1450, lng: -85.8250 },
+    menu: {
+      sections: [
+        {
+          title: "Eco-Eats",
+          items: [
+            { name: "Organic Garden Salad", price: "$8", description: "100% farm-grown ingredients" },
+            { name: "Lentil Soup", price: "$6", description: "Hearty and nutritious" },
+            { name: "Fresh Herb Tea", price: "$3" }
+          ]
+        }
+      ]
+    }
   },
   {
     id: 31,
@@ -445,7 +498,19 @@ export const locations: Location[] = [
       "https://loremflickr.com/1200/800/border,town",
       "https://loremflickr.com/1200/800/local,life"
     ],
-    coordinates: { lat: 11.1150, lng: -85.7550 }
+    coordinates: { lat: 11.1150, lng: -85.7550 },
+    menu: {
+      sections: [
+        {
+          title: "Local Comedor",
+          items: [
+            { name: "Daily Special", price: "$5", description: "Meat, rice, beans, and salad" },
+            { name: "Fried Fish", price: "$7", description: "Caught in the bay this morning" },
+            { name: "Natural Juice", price: "$1.50" }
+          ]
+        }
+      ]
+    }
   },
 
   // DINING
@@ -472,17 +537,27 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Burgers",
+          title: "Burgers & Sandwiches",
           items: [
-            { name: "Dale Burger", price: "$9", description: "Bacon, cheese, secret sauce" },
-            { name: "Veggie Burger", price: "$8" }
+            { name: "Dale Burger", price: "$9", description: "Bacon, cheese, secret sauce, served with fries" },
+            { name: "Veggie Burger", price: "$8", description: "Handmade lentil patty, avocado, sprouts" },
+            { name: "Chicken Club", price: "$8.50", description: "Triple decker with grilled chicken and bacon" }
           ]
         },
         {
-          title: "Breakfast",
+          title: "All-Day Breakfast",
           items: [
-            { name: "Classic Breakfast", price: "$6" },
-            { name: "Pancakes", price: "$7" }
+            { name: "Classic Nica", price: "$6", description: "Gallo pinto, eggs, fried cheese, plantains" },
+            { name: "Tropical Pancakes", price: "$7", description: "Fluffy stack with seasonal fruit and honey" },
+            { name: "Breakfast Burrito", price: "$7.50", description: "Eggs, beans, cheese, and chorizo" }
+          ]
+        },
+        {
+          title: "Drinks",
+          items: [
+            { name: "Fresh Passion Fruit", price: "$3" },
+            { name: "Cold Brew Coffee", price: "$3.50" },
+            { name: "Toña Beer", price: "$2.50" }
           ]
         }
       ]
@@ -513,15 +588,25 @@ export const locations: Location[] = [
         {
           title: "Smoothie Bowls",
           items: [
-            { name: "Acai Bowl", price: "$8" },
-            { name: "Dragon Fruit Bowl", price: "$9" }
+            { name: "Acai Bowl", price: "$8", description: "Organic acai, homemade granola, banana, honey" },
+            { name: "Dragon Fruit Bowl", price: "$9", description: "Pitaya base, mango, coconut flakes, chia" },
+            { name: "Green Power Bowl", price: "$8.50", description: "Spinach, spirulina, pineapple, hemp seeds" }
           ]
         },
         {
-          title: "Vegetarian",
+          title: "Healthy Bites",
           items: [
-            { name: "Hummus Plate", price: "$7" },
-            { name: "Avocado Toast", price: "$6" }
+            { name: "Hummus Plate", price: "$7", description: "Roasted garlic hummus, fresh veggies, warm pita" },
+            { name: "Avocado Toast", price: "$6", description: "Sourdough, smashed avocado, poached egg, chili" },
+            { name: "Quinoa Salad", price: "$8", description: "Mixed greens, roasted veggies, lemon tahini" }
+          ]
+        },
+        {
+          title: "Coffee & Tea",
+          items: [
+            { name: "Iced Latte", price: "$4" },
+            { name: "Matcha Latte", price: "$4.50" },
+            { name: "Ginger Kombucha", price: "$5" }
           ]
         }
       ]
@@ -550,11 +635,27 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Seafood",
+          title: "Seafood Specialties",
           items: [
-            { name: "Garlic Lobster", price: "$22" },
-            { name: "Grilled Shrimp", price: "$15" },
-            { name: "Whole Fried Fish", price: "$14" }
+            { name: "Garlic Lobster", price: "$22", description: "Fresh local lobster, garlic butter, rice, salad" },
+            { name: "Grilled Shrimp", price: "$15", description: "Jumbo shrimp, garlic sauce, tostones" },
+            { name: "Whole Fried Fish", price: "$14", description: "Red snapper caught daily, pico de gallo" },
+            { name: "Seafood Platter", price: "$35", description: "Lobster, shrimp, fish, and calamari for two" }
+          ]
+        },
+        {
+          title: "Traditional Nica",
+          items: [
+            { name: "Churrasco", price: "$18", description: "Grilled tenderloin, chimichurri, fried cheese" },
+            { name: "Pollo a la Plancha", price: "$12", description: "Grilled chicken breast, rice and beans" }
+          ]
+        },
+        {
+          title: "Drinks",
+          items: [
+            { name: "Rum Punch", price: "$5" },
+            { name: "Macuá", price: "$6", description: "Nicaragua's national cocktail" },
+            { name: "Toña Lager", price: "$2.50" }
           ]
         }
       ]
@@ -585,8 +686,25 @@ export const locations: Location[] = [
         {
           title: "Steaks",
           items: [
-            { name: "Filet Mignon", price: "$28" },
-            { name: "Tomahawk Steak", price: "$45" }
+            { name: "Filet Mignon", price: "$28", description: "8oz tenderloin, red wine reduction, mash" },
+            { name: "Tomahawk Steak", price: "$45", description: "32oz bone-in ribeye for two, roasted veggies" },
+            { name: "Ribeye", price: "$26", description: "12oz grilled to perfection, peppercorn sauce" }
+          ]
+        },
+        {
+          title: "French Classics",
+          items: [
+            { name: "Escargot", price: "$12", description: "Garlic herb butter, fresh baguette" },
+            { name: "Duck Confit", price: "$24", description: "Slow-cooked leg, orange glaze, lentils" },
+            { name: "Onion Soup", price: "$9", description: "Classic French style, melted gruyère" }
+          ]
+        },
+        {
+          title: "Wine",
+          items: [
+            { name: "Malbec (Glass)", price: "$8" },
+            { name: "Chardonnay (Glass)", price: "$7" },
+            { name: "Bordeaux (Bottle)", price: "$45" }
           ]
         }
       ]
@@ -615,10 +733,19 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Daily Catch",
+          title: "Fisherman's Catch",
           items: [
-            { name: "Fish of the Day", price: "$10" },
-            { name: "Shrimp Tacos", price: "$8" }
+            { name: "Fish of the Day", price: "$10", description: "Grilled or fried, served with rice and salad" },
+            { name: "Shrimp Tacos", price: "$8", description: "3 tacos with fresh shrimp and spicy slaw" },
+            { name: "Garlic Shrimp", price: "$12", description: "Sautéed in local garlic and butter" }
+          ]
+        },
+        {
+          title: "Sides & Drinks",
+          items: [
+            { name: "Tostones", price: "$4", description: "Fried plantains with fried cheese" },
+            { name: "Victoria Frost", price: "$2.50" },
+            { name: "Natural Cacao", price: "$2" }
           ]
         }
       ]
@@ -647,15 +774,19 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Breakfast Platters",
+          title: "Breakfast",
           items: [
-            { name: "Build Your Own", price: "$8" }
+            { name: "Build Your Own", price: "$8", description: "Choose 5 items from our garden-fresh list" },
+            { name: "Garden Omelette", price: "$7", description: "Spinach, mushrooms, and feta cheese" },
+            { name: "Tropical Fruit Bowl", price: "$6", description: "Seasonal fruits, yogurt, and honey" }
           ]
         },
         {
-          title: "Drinks",
+          title: "Smoothies & Mojitos",
           items: [
-            { name: "Watermelon Mojito", price: "$5" }
+            { name: "Watermelon Mojito", price: "$5", description: "Fresh mint, local rum, and watermelon" },
+            { name: "Green Smoothie", price: "$4", description: "Kale, apple, ginger, and lemon" },
+            { name: "Passion Fruit Mojito", price: "$5" }
           ]
         }
       ]
@@ -686,16 +817,17 @@ export const locations: Location[] = [
         {
           title: "Craft Beers",
           items: [
-            { name: "IPA", price: "$5" },
-            { name: "Pale Ale", price: "$5" },
-            { name: "Beer Flight", price: "$12" }
+            { name: "IPA", price: "$5", description: "Hoppy and bold with citrus notes" },
+            { name: "Pale Ale", price: "$5", description: "Smooth and balanced artisanal ale" },
+            { name: "Beer Flight", price: "$12", description: "4 tasters of our current brews" }
           ]
         },
         {
-          title: "Tacos",
+          title: "Pub Grub & Tacos",
           items: [
-            { name: "Pork Tacos", price: "$3" },
-            { name: "Chicken Tacos", price: "$3" }
+            { name: "Pork Tacos", price: "$3", description: "Slow-roasted with pineapple salsa" },
+            { name: "Chicken Tacos", price: "$3", description: "Grilled with pico de gallo" },
+            { name: "Loaded Nachos", price: "$8", description: "Cheese, beans, jalapeños, and guac" }
           ]
         }
       ]
@@ -724,10 +856,19 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Sushi Rolls",
+          title: "Signature Rolls",
           items: [
-            { name: "California Roll", price: "$10" },
-            { name: "Spicy Tuna Roll", price: "$12" }
+            { name: "California Roll", price: "$10", description: "Crab, avocado, and cucumber" },
+            { name: "Spicy Tuna Roll", price: "$12", description: "Fresh local tuna with spicy mayo" },
+            { name: "Dragon Roll", price: "$14", description: "Eel, cucumber, topped with avocado" }
+          ]
+        },
+        {
+          title: "Sashimi & Appetizers",
+          items: [
+            { name: "Tuna Sashimi", price: "$10", description: "5 pieces of fresh morning catch" },
+            { name: "Edamame", price: "$5", description: "Steamed with sea salt" },
+            { name: "Miso Soup", price: "$4" }
           ]
         }
       ]
@@ -758,8 +899,16 @@ export const locations: Location[] = [
         {
           title: "Buddha Bowls",
           items: [
-            { name: "Zen Bowl", price: "$9" },
-            { name: "Power Bowl", price: "$10" }
+            { name: "Zen Bowl", price: "$9", description: "Brown rice, tofu, seaweed, ginger, and sprouts" },
+            { name: "Power Bowl", price: "$10", description: "Quinoa, chicken, avocado, nuts, and seeds" },
+            { name: "Thai Green Curry", price: "$11", description: "Veggies, coconut milk, and jasmine rice" }
+          ]
+        },
+        {
+          title: "Drinks",
+          items: [
+            { name: "Local Kombucha", price: "$4" },
+            { name: "Fresh Ginger Ale", price: "$3" }
           ]
         }
       ]
@@ -788,10 +937,18 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Healthy Eats",
+          title: "Nourishing Bowls",
           items: [
-            { name: "Quinoa Salad", price: "$8" },
-            { name: "Green Smoothie", price: "$5" }
+            { name: "Quinoa Salad", price: "$8", description: "Chickpeas, cucumber, tahini dressing" },
+            { name: "Jerk Chicken Bowl", price: "$10", description: "Spicy chicken, rice, beans, and slaw" },
+            { name: "Chia Pudding", price: "$6", description: "Coconut milk, berries, and almonds" }
+          ]
+        },
+        {
+          title: "Smoothies & Lattes",
+          items: [
+            { name: "Green Smoothie", price: "$5", description: "Spinach, banana, and spirulina" },
+            { name: "Golden Latte", price: "$4", description: "Turmeric, ginger, and honey" }
           ]
         }
       ]
@@ -820,10 +977,18 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Pizzas",
+          title: "Wood-Fired Pizza",
           items: [
-            { name: "Margherita", price: "$10" },
-            { name: "Seafood Pizza", price: "$14" }
+            { name: "Margherita", price: "$10", description: "Fresh tomato sauce, mozzarella, and basil" },
+            { name: "Seafood Pizza", price: "$14", description: "Shrimp, calamari, and mussels from the bay" },
+            { name: "Pepperoni", price: "$12", description: "Classic Italian pepperoni and mozzarella" }
+          ]
+        },
+        {
+          title: "Pasta & Salads",
+          items: [
+            { name: "Beef Lasagna", price: "$12", description: "Homemade with rich bolognese and béchamel" },
+            { name: "Caesar Salad", price: "$8", description: "Romaine, croutons, parmesan, and house dressing" }
           ]
         }
       ]
@@ -852,10 +1017,18 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Coffee",
+          title: "Coffee & Bakery",
           items: [
-            { name: "Americano", price: "$3" },
-            { name: "Latte", price: "$4" }
+            { name: "Organic Americano", price: "$3", description: "Locally grown, roasted on-site" },
+            { name: "Creamy Latte", price: "$4", description: "Double shot with steamed milk" },
+            { name: "Chocolate Croissant", price: "$3", description: "Flaky, buttery, and filled with dark chocolate" }
+          ]
+        },
+        {
+          title: "Breakfast & Brunch",
+          items: [
+            { name: "Avocado Toast", price: "$6", description: "On homemade sourdough with chili flakes" },
+            { name: "Quiche of the Day", price: "$7", description: "Served with a fresh side salad" }
           ]
         }
       ]
@@ -884,9 +1057,18 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Traditional Soups",
+          title: "Traditional Nica",
           items: [
-            { name: "Sopa de Mondongo", price: "$7" }
+            { name: "Sopa de Mondongo", price: "$7", description: "Traditional tripe soup (Available Sundays)" },
+            { name: "Indio Viejo", price: "$8", description: "Slow-cooked beef and corn stew" },
+            { name: "Vigorón", price: "$6", description: "Yuca, crispy pork rinds, and cabbage salad" }
+          ]
+        },
+        {
+          title: "Drinks",
+          items: [
+            { name: "Cacao with Milk", price: "$2", description: "Traditional chocolate drink" },
+            { name: "Fresh Pitaya Juice", price: "$2.50" }
           ]
         }
       ]
@@ -918,9 +1100,15 @@ export const locations: Location[] = [
         {
           title: "Farm to Table",
           items: [
-            { name: "Organic Farm Chicken", price: "$24" },
-            { name: "Catch of the Day", price: "$26" },
-            { name: "Garden Salad", price: "$12" }
+            { name: "Organic Farm Chicken", price: "$24", description: "Roasted with herbs from our garden" },
+            { name: "Jungle Risotto", price: "$20", description: "Wild mushrooms and local artisanal cheese" }
+          ]
+        },
+        {
+          title: "Ocean to Table",
+          items: [
+            { name: "Catch of the Day", price: "$26", description: "Pan-seared with a tropical fruit salsa" },
+            { name: "Garden Salad", price: "$12", description: "100% grown on site at the farm" }
           ]
         }
       ]
@@ -949,11 +1137,18 @@ export const locations: Location[] = [
     menu: {
       sections: [
         {
-          title: "Garden to Table",
+          title: "Aquaponic & Organic",
           items: [
-            { name: "Aquaponic Tilapia", price: "$18" },
-            { name: "Jungle Bowl", price: "$14" },
-            { name: "Fresh Herb Infusion", price: "$5" }
+            { name: "Aquaponic Tilapia", price: "$18", description: "Fresh from the pond, lemon butter sauce" },
+            { name: "Jungle Bowl", price: "$14", description: "Roasted roots, kale, and spicy seeds" }
+          ]
+        },
+        {
+          title: "Shared Plates & Drinks",
+          items: [
+            { name: "Pork Belly Tacos", price: "$12", description: "Crispy with a pineapple slaw" },
+            { name: "Fresh Herb Infusion", price: "$5", description: "Garden mint and lemongrass" },
+            { name: "TreeCasa Mule", price: "$8", description: "Ginger beer, lime, and local rum" }
           ]
         }
       ]
@@ -1021,7 +1216,19 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/swimming,nature",
       "https://loremflickr.com/800/600/clear,water"
     ],
-    coordinates: { lat: 11.4800, lng: -85.5800 }
+    coordinates: { lat: 11.4800, lng: -85.5800 },
+    menu: {
+      sections: [
+        {
+          title: "Springside Snacks",
+          items: [
+            { name: "Coco Loco", price: "$5", description: "Fresh coconut with a splash of rum" },
+            { name: "Nica Platter", price: "$8", description: "Fried cheese, plantains, and beans" },
+            { name: "Fresh Fruit Smoothie", price: "$4" }
+          ]
+        }
+      ]
+    }
   },
   {
     id: 23,
