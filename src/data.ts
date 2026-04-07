@@ -22,7 +22,7 @@ import {
 export interface Location {
   id: number;
   name: string;
-  category: 'beaches-north' | 'beaches-south' | 'beaches-town' | 'dining' | 'adventures' | 'adventures-regional' | 'logistics';
+  category: 'beaches-north' | 'beaches-south' | 'beaches-town' | 'dining' | 'adventures' | 'adventures-regional' | 'logistics' | 'car-rentals';
   query: string;
   tags: string[];
   description: string;
@@ -38,6 +38,17 @@ export interface Location {
       title: string;
       items: { name: string; price: string; description?: string }[];
     }[];
+  };
+  hours?: {
+    open: string;
+    close: string;
+    days: string;
+  };
+  surfData?: {
+    spotName: string;
+    difficulty: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
+    bestTide: 'Low' | 'Mid' | 'High' | 'All Tides';
+    bestSwell: string;
   };
 }
 
@@ -65,6 +76,12 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/nicaragua,ocean"
     ],
     coordinates: { lat: 11.2941, lng: -85.9083 },
+    surfData: {
+      spotName: "Maderas",
+      difficulty: "All Levels",
+      bestTide: "Mid",
+      bestSwell: "S-SW"
+    },
     menu: {
       sections: [
         {
@@ -299,6 +316,12 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/beach,shack"
     ],
     coordinates: { lat: 11.2150, lng: -85.8880 },
+    surfData: {
+      spotName: "Remanso",
+      difficulty: "Beginner",
+      bestTide: "Mid",
+      bestSwell: "S-SW"
+    },
     menu: {
       sections: [
         {
@@ -340,6 +363,12 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/palm,beach"
     ],
     coordinates: { lat: 11.1850, lng: -85.8550 },
+    surfData: {
+      spotName: "Hermosa",
+      difficulty: "All Levels",
+      bestTide: "All Tides",
+      bestSwell: "S-SW"
+    },
     menu: {
       sections: [
         {
@@ -381,7 +410,13 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/surf,pro",
       "https://loremflickr.com/800/600/rugged,coast"
     ],
-    coordinates: { lat: 11.1650, lng: -85.8450 }
+    coordinates: { lat: 11.1650, lng: -85.8450 },
+    surfData: {
+      spotName: "Yankee",
+      difficulty: "Advanced",
+      bestTide: "High",
+      bestSwell: "S-SW"
+    }
   },
   {
     id: 29,
@@ -534,6 +569,11 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/digital,nomad,cafe"
     ],
     coordinates: { lat: 11.2530, lng: -85.8710 },
+    hours: {
+      open: "7:00 AM",
+      close: "9:00 PM",
+      days: "Daily"
+    },
     menu: {
       sections: [
         {
@@ -583,6 +623,11 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/skate,park"
     ],
     coordinates: { lat: 11.2540, lng: -85.8700 },
+    hours: {
+      open: "8:00 AM",
+      close: "4:00 PM",
+      days: "Daily"
+    },
     menu: {
       sections: [
         {
@@ -632,6 +677,11 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/ocean,dining"
     ],
     coordinates: { lat: 11.2510, lng: -85.8730 },
+    hours: {
+      open: "11:00 AM",
+      close: "10:00 PM",
+      days: "Daily"
+    },
     menu: {
       sections: [
         {
@@ -681,6 +731,11 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/gourmet,food"
     ],
     coordinates: { lat: 11.2550, lng: -85.8690 },
+    hours: {
+      open: "5:00 PM",
+      close: "10:00 PM",
+      days: "Mon-Sat"
+    },
     menu: {
       sections: [
         {
@@ -730,6 +785,7 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/rustic,restaurant"
     ],
     coordinates: { lat: 11.2500, lng: -85.8740 },
+    hours: { open: "11:00 AM", close: "9:00 PM", days: "Daily" },
     menu: {
       sections: [
         {
@@ -771,6 +827,7 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/tropical,drink"
     ],
     coordinates: { lat: 11.2560, lng: -85.8680 },
+    hours: { open: "8:00 AM", close: "4:00 PM", days: "Daily" },
     menu: {
       sections: [
         {
@@ -812,6 +869,11 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/open,air,bar"
     ],
     coordinates: { lat: 11.2570, lng: -85.8670 },
+    hours: {
+      open: "12:00 PM",
+      close: "11:00 PM",
+      days: "Daily"
+    },
     menu: {
       sections: [
         {
@@ -853,6 +915,7 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/sushi,chef"
     ],
     coordinates: { lat: 11.2580, lng: -85.8660 },
+    hours: { open: "12:00 PM", close: "10:00 PM", days: "Tue-Sun" },
     menu: {
       sections: [
         {
@@ -894,6 +957,7 @@ export const locations: Location[] = [
       "https://loremflickr.com/1200/800/modern,cafe"
     ],
     coordinates: { lat: 11.2590, lng: -85.8650 },
+    hours: { open: "11:30 AM", close: "9:00 PM", days: "Daily" },
     menu: {
       sections: [
         {
@@ -934,6 +998,7 @@ export const locations: Location[] = [
       "https://loremflickr.com/1200/800/digital,nomad"
     ],
     coordinates: { lat: 11.2600, lng: -85.8640 },
+    hours: { open: "8:00 AM", close: "5:00 PM", days: "Mon-Sat" },
     menu: {
       sections: [
         {
@@ -974,6 +1039,7 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/italian,food"
     ],
     coordinates: { lat: 11.2490, lng: -85.8750 },
+    hours: { open: "12:00 PM", close: "10:00 PM", days: "Daily" },
     menu: {
       sections: [
         {
@@ -1442,5 +1508,66 @@ export const locations: Location[] = [
       "https://loremflickr.com/800/600/dusty,road"
     ],
     coordinates: { lat: 11.2500, lng: -85.8700 }
+  },
+  // CAR RENTALS
+  {
+    id: 52,
+    name: "Gaby's Car Rental",
+    category: "car-rentals",
+    query: "Gaby's+Car+Rental+San+Juan+del+Sur",
+    tags: ["Local", "Reliable", "4x4"],
+    description: "The most popular local rental agency. Known for reliable service and well-maintained 4x4s.",
+    intel: "Located near the center of town. They often have better rates than the international chains.",
+    tips: ["Book in advance for high season", "Check the spare tire", "Local knowledge is excellent"],
+    icon: Truck,
+    rating: 4.8,
+    priceRange: '$$$',
+    images: [
+      "https://loremflickr.com/800/600/car,rental",
+      "https://loremflickr.com/800/600/suzuki,jimny",
+      "https://loremflickr.com/800/600/4x4,rental"
+    ],
+    coordinates: { lat: 11.2545, lng: -85.8705 },
+    hours: { open: "8:00 AM", close: "5:00 PM", days: "Mon-Sat" }
+  },
+  {
+    id: 53,
+    name: "Barefoot Rentals",
+    category: "car-rentals",
+    query: "Barefoot+Rentals+San+Juan+del+Sur",
+    tags: ["Adventure", "ATVs", "Scooters"],
+    description: "Specializes in ATVs, scooters, and rugged adventure vehicles.",
+    intel: "Great for short-term rentals to explore nearby beaches.",
+    tips: ["ATVs are great for Maderas road", "Scooters are for town only", "Helmet included"],
+    icon: Bike,
+    rating: 4.6,
+    priceRange: '$$',
+    images: [
+      "https://loremflickr.com/800/600/atv,rental",
+      "https://loremflickr.com/800/600/scooter,rental",
+      "https://loremflickr.com/800/600/adventure,vehicle"
+    ],
+    coordinates: { lat: 11.2535, lng: -85.8715 },
+    hours: { open: "8:30 AM", close: "5:30 PM", days: "Daily" }
+  },
+  {
+    id: 54,
+    name: "Alamo / National",
+    category: "car-rentals",
+    query: "Alamo+San+Juan+del+Sur",
+    tags: ["International", "Insurance", "Airport Drop-off"],
+    description: "International chain offering standard insurance and airport drop-off options.",
+    intel: "Best for those who want the security of an international brand and need to return the car at the airport.",
+    tips: ["Good for one-way rentals", "Full insurance available", "Newer fleet"],
+    icon: Truck,
+    rating: 4.4,
+    priceRange: '$$$',
+    images: [
+      "https://loremflickr.com/800/600/rental,car,fleet",
+      "https://loremflickr.com/800/600/toyota,hilux",
+      "https://loremflickr.com/800/600/airport,rental"
+    ],
+    coordinates: { lat: 11.2525, lng: -85.8725 },
+    hours: { open: "8:00 AM", close: "6:00 PM", days: "Daily" }
   }
 ];
