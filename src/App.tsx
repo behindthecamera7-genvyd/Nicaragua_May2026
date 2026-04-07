@@ -10,6 +10,7 @@ import {
   ChevronRight, 
   Star, 
   Info,
+  Heart,
   Menu as MenuIcon,
   X,
   Search,
@@ -24,7 +25,8 @@ import {
   Navigation,
   Clock,
   ChevronDown,
-  Activity
+  Activity,
+  MessageSquare
 } from 'lucide-react';
 import { locations, Location, HOUSE_COORDS } from './data';
 
@@ -51,10 +53,25 @@ export default function App() {
   const [isGridView, setIsGridView] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileView, setMobileView] = useState<'photos' | 'map'>('photos');
+  const [favorites, setFavorites] = useState<number[]>(() => {
+    const saved = localStorage.getItem('sjds-favorites');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('sjds-favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id: number) => {
+    setFavorites(prev => 
+      prev.includes(id) ? prev.filter(fid => fid !== id) : [...prev, id]
+    );
+  };
 
   const filteredLocations = useMemo(() => {
     return locations.filter(loc => {
       const matchesFilter = filter === 'all' || 
+                          (filter === 'favorites' && favorites.includes(loc.id)) ||
                           loc.category === filter || 
                           (filter === 'beaches' && loc.category.startsWith('beaches-')) ||
                           (filter === 'adventures' && loc.category.startsWith('adventures'));
@@ -82,6 +99,7 @@ export default function App() {
 
   const categories = [
     { id: 'all', label: 'All', icon: Compass },
+    { id: 'favorites', label: 'Favorites', icon: Heart },
     { id: 'beaches', label: 'Beaches', icon: Waves },
     { id: 'dining', label: 'Dining', icon: Utensils },
     { id: 'adventures', label: 'Adventures', icon: Mountain },
@@ -232,14 +250,29 @@ export default function App() {
                     </div>
                   </div>
                   
-                  <div className="flex flex-wrap gap-1.5">
-                    {loc.tags.map(tag => (
-                      <span key={tag} className={`text-[8px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider ${
-                        selectedId === loc.id ? 'bg-zinc-950 text-white' : 'bg-zinc-800 text-zinc-500'
-                      }`}>
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="flex justify-between items-center">
+                    <div className="flex flex-wrap gap-1.5">
+                      {loc.tags.map(tag => (
+                        <span key={tag} className={`text-[8px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider ${
+                          selectedId === loc.id ? 'bg-zinc-950 text-white' : 'bg-zinc-800 text-zinc-500'
+                        }`}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(loc.id);
+                      }}
+                      className={`p-1.5 rounded-lg transition-colors ${
+                        favorites.includes(loc.id) 
+                        ? 'text-red-500 bg-red-500/10' 
+                        : 'text-zinc-600 hover:text-zinc-400'
+                      }`}
+                    >
+                      <Heart size={14} fill={favorites.includes(loc.id) ? "currentColor" : "none"} />
+                    </button>
                   </div>
 
                   {selectedId === loc.id && (
@@ -451,8 +484,18 @@ export default function App() {
                         )}
                         <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{activeLocation.category.replace('-', ' ')}</span>
                       </div>
-                      <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase italic tracking-tighter text-white mb-8">
+                      <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase italic tracking-tighter text-white mb-8 flex flex-wrap items-center gap-6">
                         {activeLocation.name}
+                        <button
+                          onClick={() => toggleFavorite(activeLocation.id)}
+                          className={`p-4 rounded-3xl border transition-all ${
+                            favorites.includes(activeLocation.id)
+                            ? 'bg-red-500/10 border-red-500/50 text-red-500'
+                            : 'bg-zinc-800/50 border-zinc-700 text-zinc-500 hover:text-white hover:border-zinc-500'
+                          }`}
+                        >
+                          <Heart size={32} fill={favorites.includes(activeLocation.id) ? "currentColor" : "none"} />
+                        </button>
                       </h2>
                       <p className="text-xl md:text-2xl text-zinc-300 leading-relaxed font-medium italic max-w-3xl">
                         {activeLocation.description}
@@ -642,6 +685,19 @@ export default function App() {
                           ))}
                         </div>
                       </div>
+
+                      {activeLocation.whatsapp && (
+                        <div className="pt-8 border-t border-zinc-800 mt-8">
+                          <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-4">Direct Booking</h4>
+                          <a 
+                            href={`https://wa.me/${activeLocation.whatsapp.replace(/\+/g, '')}`}
+                            target="_blank"
+                            className="w-full py-4 bg-green-600 hover:bg-green-500 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-green-900/20"
+                          >
+                            <MessageSquare size={14} /> Chat on WhatsApp
+                          </a>
+                        </div>
+                      )}
                     </section>
 
                     <section className="p-8 bg-orange-600 rounded-[2.5rem] text-white shadow-2xl shadow-orange-900/20">
